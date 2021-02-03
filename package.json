@@ -1,0 +1,16 @@
+{
+  "name": "log-bot",
+  "version": "0.0.1",
+  "description": "Patrol Log Bot for the Roblox Game Den Haag.",
+  "main": "index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Valatos",
+  "license": "MIT",
+  "dependencies": {
+    "discord.js": "^12.5.1",
+    "superagent": "^6.1.0"
+  }
+}
