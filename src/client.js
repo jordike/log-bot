@@ -9,11 +9,12 @@ exports.LogBotClient = class extends discord.Client {
     /**
      * Creates a new instance of the Log Bot.
      *
-     * @param {string} token The token to use in order to log in.
+     * @param {string} prefix The prefix to which the bot responds.
      */
-    constructor(token) {
+    constructor(prefix) {
         super();
 
+        this.prefix = prefix;
         this.commands_cache = [];
     }
 
@@ -67,5 +68,12 @@ exports.LogBotClient = class extends discord.Client {
 
             console.log(`Loaded command ${command_name}.`);
         });
+    }
+
+    /**
+     * Returns the prefix which marks messages as commands.
+     */
+    get prefix() {
+        return this.prefix;
     }
 }

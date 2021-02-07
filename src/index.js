@@ -1,5 +1,5 @@
 const { LogBotClient } = require("./client.js");
-const client = new LogBotClient();
+const client = new LogBotClient(">");
 
 client.load_events();
 client.load_commands();
