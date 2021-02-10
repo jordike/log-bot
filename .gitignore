@@ -2,3 +2,4 @@ node_modules/
 
 package-lock.json
 local_settings.json
+credentials.json

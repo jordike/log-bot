@@ -29,11 +29,15 @@ exports.LogBotClient = class extends discord.Client {
      * The event file must contain a function named 'fire'.
      * The first parameter will always be this client.
      * The other parameters it accepts, depends on the event.
+     *
+     * The event file must contain an array named 'info'.
+     * Here, information will be listed that define the function
+     * and the permissions required.
      */
     async load_events() {
         const events = readdirSync(`${__dirname}/events`);
 
-        events.forEach(event_file => {
+        for (const event_file of events) {
             // Remove the file extension, so we only
             // have the event name left.
             const event_name = event_file.split(".")[0];
@@ -44,7 +48,7 @@ exports.LogBotClient = class extends discord.Client {
             });
 
             console.log(`Loaded event ${event_name}.`);
-        });
+        };
     }
 
     /**
@@ -57,23 +61,16 @@ exports.LogBotClient = class extends discord.Client {
     async load_commands() {
         const commands = readdirSync(`${__dirname}/commands`);
 
-        commands.forEach(command_file => {
-            const command_name = command_file.split(".")[0];
+        for (const command_file of commands) {
             const command = require(`${__dirname}/commands/${command_file}`);
+            const command_names = command.info.names;
 
             this.commands_cache.push({
-                name: command_name,
+                names: command_names,
                 command: command
             });
 
-            console.log(`Loaded command ${command_name}.`);
-        });
-    }
-
-    /**
-     * Returns the prefix which marks messages as commands.
-     */
-    get prefix() {
-        return this.prefix;
+            console.log(`Loaded command with names: ${command_names.join(", ")}.`);
+        };
     }
 }
